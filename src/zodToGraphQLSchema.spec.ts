@@ -25,6 +25,11 @@ describe("zodToGraphQLSchema", () => {
         name: String!
         books: [Book!]!
       }
+      type Query {
+        authors: [Author]
+        books: [Book]
+        libraries: [Library]
+      }
     `;
 
     const generatedSchema = zodToGraphQLSchema(schemas, 'Int');

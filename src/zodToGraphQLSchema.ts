@@ -1,6 +1,7 @@
 import { ZodObject, ZodType } from "zod";
 import { getGraphQLTypeFromZod } from "./getGraphQLTypeFromZod";
 import { SchemaEntry } from "./schemaEntry";
+import {pascalToPluralCamel} from "./pascalToPluralCamel";
 
 const convertToSchemaMap = (schemas: Record<string, SchemaEntry>) => {
   const schemasMap = new Map<string, ZodObject<any>>();
@@ -14,8 +15,10 @@ export const zodToGraphQLSchema = (
   schemas: Record<string, SchemaEntry>,
   numberType: string = 'Float'
 ): string => {
+  let query = 'type Query {\n';
   let schemaString = '';
   for (const [schemaName, { schema, idField }] of Object.entries(schemas)) {
+    query += `  ${pascalToPluralCamel(schemaName)}: [${schemaName}]\n`;
     schemaString += `type ${schemaName} {\n`;
     for (const [propertyName, propertySchema] of Object.entries(schema.shape)) {
       let graphQLType = getGraphQLTypeFromZod(
@@ -30,5 +33,6 @@ export const zodToGraphQLSchema = (
     }
     schemaString += '}\n';
   }
-  return schemaString;
+  query += '}\n';
+  return schemaString + '\n' + query;
 };
