@@ -1,9 +1,16 @@
 {
   "name": "zod-to-gql",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Zod to GraphQL converter",
-  "main": "index.js",
+  "main": "src/zodToGraphQLSchema.ts",
+  "repository": {
+    "url": "https://github.com/busykoala/zod-to-gql",
+    "type": "git"
+  },
+  "author": "Matthias Osswald <info@busykoala.io>",
   "license": "GPL-3.0",
+  "keywords": ["zod", "graphql", "schema", "converter"],
+  "bugs": "https://github.com/busykoala/zod-to-gql/issues",
   "scripts": {
     "test": "jest"
   },

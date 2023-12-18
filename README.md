@@ -1,16 +1,21 @@
 # Zod to GraphQL converter
 
-This is work in progress. Do not use in production.
+Current limitations:
+- many unsupported type mappings
+- query does not yet contain any parameters
+- no mutations generated
+- order of types are according to mapping provided
 
-## Install
+## Install Package
 
 ```bash
-yarn install
+yarn install zod-to-gql
 ```
 
 ## Run tests
 
 ```bash
+yarn install
 yarn test
 ```
 
